@@ -10,14 +10,10 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">{{ __('Barang') }}</h3>
-                            <form action="{{ route('barang.index') }}" method="GET">
-                                <input type="text" name="search">
-                                <button type="submit">Search</button>
-                            </form>
+                            <h3 class="mb-0">{{ __('Warna') }}</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('barang.create') }}" class="btn btn-sm btn-primary">{{ __('Add barang') }}</a>
+                            <a href="{{ route('warna.create') }}" class="btn btn-sm btn-primary">{{ __('Add warna') }}</a>
                         </div>
                     </div>
                 </div>
@@ -37,28 +33,25 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">{{ __('Merk') }}</th>
-                                <th scope="col">{{ __('Stock') }}</th>
-                                <th scope="col">{{ __('Ukuran') }}</th>
-                                <th scope="col">{{ __('Status') }}</th>
+                                <th scope="col">{{ __('Nama User') }}</th>
+                                <th scope="col">{{ __('Nama Barang') }}</th>
                                 <th scope="col">{{ __('Creation Date') }}</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($barang as $item)
+                            @foreach ($Order as $item)
                             <tr>
-                                <td>{{ $item->merek }}</td>
-                                <td>{{ $item->stock }}</td>
-                                <td>{{ $item->ukuran }}</td>
-                                <td>{{ $item->status }}</td>
-                                <td>{{ $item->created_at->format('d/m/Y H:i') }}</td>
+                                
+                                <td>{{ $item->user->name}}</td>
+                                <td>{{ $item->barang->merek }}</td>
+                                {{-- <td>{{ $item->created_at->format('d/m/Y H:i') }}</td> --}}
                                 <td>
-                                    <form action="{{ route('barang.delete', ['id'=>$item->id]) }}" method="POST">
+                                    <form action="{{ route('warna.delete', ['id'=>$item->id]) }}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <a class="btn btn-sm btn-primary" href="{{ route('barang.detail', ['id'=>$item->id]) }}">Detail</a>
-                                        <a class="btn btn-sm btn-primary" href="{{ route('barang.edit', ['id'=>$item->id]) }}">Edit</a>
+                                        <a class="btn btn-sm btn-primary" href="{{ route('warna.detail', ['id'=>$item->id]) }}">Detail</a>
+                                        <a class="btn btn-sm btn-primary" href="{{ route('warna.edit', ['id'=>$item->id]) }}">Edit</a>
                                         <button class="btn btn-sm btn-primary" type="submit">Delete</button>
                                     </form>
                                 </td>
@@ -91,7 +84,7 @@
                 </div>
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
-                        {{ $barang->links() }}
+                        {{ $Order->links() }}
                     </nav>
                 </div>
             </div>

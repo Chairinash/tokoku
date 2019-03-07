@@ -52,6 +52,19 @@
                                         </span>
                                     @endif
                                 </div>
+                                <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-password">{{ __('status') }}</label>
+                                    <select name="status" id="input-status" class="form-control form-control-alternative{{ $errors->has('status') ? ' is-invalid' : '' }}" required>
+                                        <option>Select Status</option>
+                                        <option value="publish">Publish</option>
+                                        <option value="pending">Pending</option>
+                                    </select>
+                                    @if ($errors->has('status'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('status') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>

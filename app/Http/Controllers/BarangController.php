@@ -15,7 +15,8 @@ class BarangController extends Controller
         Barang::create([
             'merek' => $request->merek,
             'stock' => $request->stock,
-            'ukuran' => $request->ukuran
+            'ukuran' => $request->ukuran,
+            'status' => $request->status
             ]);
             
             return redirect()->route('barang.index');
@@ -29,9 +30,12 @@ class BarangController extends Controller
         public function allBarang(Request $request){
             
             if ($request->merek) {
-                $barang = Barang::where('merek', 'like', '%'.$request->merek.'%')->paginate(2);
-            }else{
-                $barang = Barang::paginate(2);
+                $barang = Barang::where('merek', 'like', '%'.$request->merek.'%')->paginate(5);
+            }else if ($request->search) {
+                return redirect()->route('barang.index',['merek' => $request->search]);
+            }
+            else{
+                $barang = Barang::paginate(5);
             }            
             return view('barang.index', compact('barang')); 
         }

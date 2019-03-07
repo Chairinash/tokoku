@@ -49,6 +49,7 @@ Route::get('warna/edit/{id}', 'WarnaController@editWarna')->name('warna.edit');
 
 Route::delete('warna/delete/{id}', 'WarnaController@deleteWarna')->name('warna.delete');
 
+Route::get('order', 'OrderController@index')->name('order.index');
 
 
 
